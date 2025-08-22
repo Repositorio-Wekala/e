@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Linktree EME
 
-## Getting Started
+Estrategia que escala. Tecnología que optimiza. Resultados que venden.
 
-First, run the development server:
+## Configuración de Supabase
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Para configurar Supabase en este proyecto:
+
+1. **Crea un archivo `.env.local`** en la raíz del proyecto con las siguientes variables:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+SUPABASE_SERVICE_ROLE_KEY=tu_clave_de_servicio_de_supabase
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Obtén las credenciales de Supabase:**
+   - Ve a tu proyecto en [Supabase Dashboard](https://supabase.com/dashboard)
+   - Settings > API
+   - Copia la URL del proyecto y la anon key
+   - Para la service role key, ve a Settings > API > Project API keys
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Instala las dependencias:**
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Ejecuta el proyecto:**
+```bash
+npm run dev
+```
 
-## Learn More
+## Estructura de Supabase
 
-To learn more about Next.js, take a look at the following resources:
+El proyecto incluye:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/lib/supabase.ts` - Cliente principal de Supabase
+- `src/lib/supabase-admin.ts` - Cliente de administración para operaciones del servidor
+- `src/hooks/useSupabase.ts` - Hook personalizado para autenticación
+- `src/components/SupabaseProvider.tsx` - Provider de contexto para Supabase
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Uso
 
-## Deploy on Vercel
+Para usar Supabase en cualquier componente:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```tsx
+import { useSupabaseContext } from '@/components/SupabaseProvider'
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export default function MiComponente() {
+  const { user, session, loading, supabase } = useSupabaseContext()
+  
+  // Tu código aquí
+}
+```
+# e
